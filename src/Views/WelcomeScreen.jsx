@@ -1,6 +1,14 @@
+import WelcomeHeader from "../Components/WelcomeHeader.jsx";
+import WelcomeCarusel from "../Components/WelcomeCarusel.jsx";
+import CallToAction from "../Components/CallToAction.jsx";
+
 function WelcomeScreen() {
     return (
-        <div>Welcome to the App!</div>
+        <>
+            <WelcomeHeader/>
+            <WelcomeCarusel/>
+            <CallToAction/>
+        </>
     );
 }
 
