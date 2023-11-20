@@ -2,10 +2,10 @@
 @import "WelcomeScreen";
 
 body {
-  font-family: 'Arial', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   background-color: $back-color;
+  font-family: $main-font;
 }
 
 .container {
@@ -15,7 +15,6 @@ body {
 
 .row {
   display: flex;
-  flex-wrap: wrap;
 
   .col {
     flex: 1 1 calc((100% / 12));
