@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&family=Tektur:wght@700&display=swap');
+$logo-font: 'Tektur', sans-serif;
+
+$main-nav-color:#041E33;
+$logo-color: #7B9DB8;
+$second-logo-color: #DBE4EB;
+$box-color: #3E6685;
+$function-color: #5D5E5E;
+$back-color: #E1E5E8;
+
+
+.header {
+  height: 3rem;
+}
+
+.welcomeHeader{
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  background-color: $main-nav-color;
+}
+
+.welcomeMenu {
+  list-style: none;
+  padding: 0;
+  color: $function-color;
+  font-size: 24px;
+  margin-right: 20px;
+  text-transform: uppercase;
+
+  li {
+    display: inline;
+    margin-left: 50px;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+.logo {
+  font-size: 48px;
+  font-family: $logo-font;
+  color: $logo-color;
+  margin-left: 20px;
+}
+
+.logo-second-color {
+  color: $second-logo-color;
+}

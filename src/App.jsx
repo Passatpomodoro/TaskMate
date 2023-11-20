@@ -1,4 +1,4 @@
-import './App.scss';
+import './Sass/App.scss';
 import {
     BrowserRouter as Router,
     Routes,
