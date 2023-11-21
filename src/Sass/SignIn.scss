@@ -12,6 +12,9 @@
   max-width: 250px;
   width: 100%;
   background-color: $main-nav-color;
+  border-radius: 20px;
+  border: $function-color 3px solid;
+  box-shadow: 0px 0px 50px 23px rgba(66, 68, 90, 0.32);;
 }
 
 .signIn-align {
@@ -28,6 +31,31 @@
   button {
     width: 70%;
     margin-bottom: 20px;
+  }
+  h1 {
+    color: $second-logo-color;
+    padding-bottom: 10px;
+    font-weight: bold;
+  }
+  h1:first-child {
+    padding-top: 20px;
+  }
+  button {
+    border-radius: 10px;
+    border: white 1px solid;
+    width: 130px;
+    height: 25px;
+  }
+  input{
+    border-radius: 20px;
+    color: $main-nav-color;
+    border: none;
+    height: 25px;
+    width: 180px;
+  }
+  input::placeholder {
+    text-align: center;
+    color: $main-nav-color;
   }
 }
 

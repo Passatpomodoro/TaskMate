@@ -33,7 +33,7 @@ export  default function LoginScreen() {
                             <input placeholder="hasło" type="password"/>
                             <button>Zaloguj się</button>
                         </form>
-                        <p>Nie masz konta? Zarejestruj sie!</p>
+                        <h1>Nie masz konta? Zarejestruj sie!</h1>
                         <button>Zarejestruj się</button>
                     </div>
                 </div>
