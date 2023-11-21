@@ -1,0 +1,30 @@
+@import "WelcomeScreen";
+
+.main-header {
+  background-color: #041E33;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-logout {
+  display: flex;
+  margin-right: 30px;
+  p {
+    margin-right: 50px;
+    color: $second-logo-color;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  p:first-child {
+    margin-right: 20px;
+  }
+  button {
+    border-radius: 10px;
+    border: white 1px solid;
+    width: 100px;
+    height: 35px;
+  }
+}
+

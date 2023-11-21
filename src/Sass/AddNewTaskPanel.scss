@@ -1,0 +1,21 @@
+.main-add-task {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 900px;
+  height: 70px;
+  background-color: #041e33;
+  margin-left: 400px;
+  margin-top: 50px;
+
+  button {
+    margin-right: 20px;
+    border-radius: 10px;
+    border: white 1px solid;
+    width: 100px;
+    height: 35px;
+  }
+  a {
+    text-decoration: none;
+  }
+}
