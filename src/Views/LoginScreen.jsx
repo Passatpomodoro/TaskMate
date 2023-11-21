@@ -2,6 +2,7 @@ import {
     useNavigate
 } from "react-router-dom";
 import supabase from "../Utils/supabase.js";
+import { Link } from "react-router-dom";
 
 export  default function LoginScreen() {
 
@@ -34,7 +35,7 @@ export  default function LoginScreen() {
                             <button>Zaloguj się</button>
                         </form>
                         <h1>Nie masz konta? Zarejestruj sie!</h1>
-                        <button>Zarejestruj się</button>
+                        <button><Link to="/signup">Zarejestruj się</Link></button>
                     </div>
                 </div>
             </div>

@@ -1,35 +1,58 @@
-import {
-    useNavigate
-} from "react-router-dom";
-import supabase from "../Utils/supabase.js";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import supabase from '../Utils/supabase.js';
 
-export  default function RegisterScreen() {
+export default function RegisterScreen() {
+    const navigation = useNavigate();
+    const [selectedOption, setSelectedOption] = useState('');
 
-    const navigation = useNavigate()
-    async function handleSignUp (e) {
+    async function handleSignUp(e) {
         e.preventDefault();
 
         const { data, error } = await supabase.auth.signUp({
-            email: e.target.elements[0].value,
-            password: e.target.elements[1].value
-        })
+            name: e.target.elements[0].value,
+            surname: e.target.elements[1].value,
+            email: e.target.elements[2].value,
+            password: e.target.elements[3].value,
+            company: e.target.elements[4].value,
+            userType: selectedOption,
+        });
+
         if (!error) {
-             console.log(data);
-            navigation('/signin')
-            return
+            console.log(data);
+            navigation('/signin');
+            return;
         }
-        console.error(error)
+
+        console.error(error);
     }
+
+    const handleOptionChange = (e) => {
+        setSelectedOption(e.target.value);
+    };
 
     return (
         <>
-        <h1>Rejestracja</h1>
-        <form onSubmit={handleSignUp}>
-            <input placeholder="email"/>
-            <input placeholder="hasło" type="password"/>
-            <button>Zarejestruj się</button>
-        </form>
+            <div className="signIn-container">
+                <div className="inner-container">
+                    <div className="signIn-align">
+                        <h1>Rejestracja</h1>
+                        <form onSubmit={handleSignUp}>
+                            <input placeholder="Imię" />
+                            <input placeholder="Nazwisko" />
+                            <input placeholder="Email" />
+                            <input placeholder="Hasło" type="password" />
+                            <input placeholder="Nazwa Firmy" />
+                            <select value={selectedOption} onChange={handleOptionChange}>
+                                <option value="">Wybierz opcję</option>
+                                <option value="option1">User</option>
+                                <option value="option2">Admin</option>
+                            </select>
+                            <button>Zarejestruj się</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
-

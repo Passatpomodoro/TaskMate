@@ -9,7 +9,7 @@
 }
 
 .inner-container {
-  max-width: 250px;
+  max-width: 300px;
   width: 100%;
   background-color: $main-nav-color;
   border-radius: 20px;
@@ -46,6 +46,9 @@
     width: 130px;
     height: 25px;
   }
+  a{
+    text-decoration: none;
+  }
   input{
     border-radius: 20px;
     color: $main-nav-color;
@@ -56,6 +59,12 @@
   input::placeholder {
     text-align: center;
     color: $main-nav-color;
+  }
+  select{
+    margin-bottom: 20px;
+    height: 30px;
+    width: 180px;
+    text-align: center;
   }
 }
 
