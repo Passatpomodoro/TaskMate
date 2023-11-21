@@ -22,10 +22,11 @@
   li {
     display: inline;
     margin-left: 50px;
-
-    a {
-      text-decoration: none;
-    }
+  }
+  a{
+    text-decoration: none;
+    color: $second-logo-color;
+    font-weight: bold;
   }
 }
 
@@ -108,6 +109,19 @@
   }
 }
 
+.welcomeColumn-icon {
+  color: $box-color;
+  height: 100px;
+  width: 100px;
+  opacity: 50%;
+}
+
+.icon-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .welcomeFooter {
   background-color: $main-nav-color;
   max-height: 300px;
@@ -126,9 +140,10 @@
 
 .welcomeFooter-box {
   div {
-    margin: 30px;
-    margin-bottom: 0;
-    padding-bottom: 20px;
+    padding: 30px;
+  }
+  div:last-child {
+    padding: 0;
   }
 }
 
@@ -144,3 +159,11 @@
 .welcomeFooter-list {
   list-style-type: disc;
 }
+
+.welcomeFooter-icon {
+  color: white;
+  width: 30px;
+  height: 30px;
+  margin-left: 30px;
+}
+

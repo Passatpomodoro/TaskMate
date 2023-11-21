@@ -24,12 +24,20 @@ export  default function LoginScreen() {
 
     return (
         <>
-            <h1>Logowanie</h1>
-            <form onSubmit={handleSignIn}>
-                <input placeholder="email"/>
-                <input placeholder="hasło" type="password"/>
-                <button>Zaloguj się</button>
-            </form>
+            <div className="signIn-container">
+                <div className="inner-container">
+                    <div className="signIn-align">
+                        <h1>Logowanie</h1>
+                        <form onSubmit={handleSignIn}>
+                            <input placeholder="email"/>
+                            <input placeholder="hasło" type="password"/>
+                            <button>Zaloguj się</button>
+                        </form>
+                        <p>Nie masz konta? Zarejestruj sie!</p>
+                        <button>Zarejestruj się</button>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

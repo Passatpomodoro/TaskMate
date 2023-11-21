@@ -1,4 +1,8 @@
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faFacebook, faInstagram} from "@fortawesome/free-brands-svg-icons";
 
+library.add(faInstagram, faFacebook);
 function WelcomeFooter () {
     return (
         <>
@@ -17,9 +21,15 @@ function WelcomeFooter () {
                             <li>Integracja Zasobów Zewnętrznych i Kalendarza</li>
                         </ul>
                     </div>
-                    <div className="col-4">
-                        <h4>Kontakt</h4>
-                        <p>Zapraszamy do kontaktu poprzez adres email: kontakt@taskmate.com</p>
+                    <div className="welcomeFooter-contact">
+                        <div className="col-4">
+                            <h4>Kontakt</h4>
+                            <p>Zapraszamy do kontaktu poprzez adres email: kontakt@taskmate.com</p>
+                        </div>
+                        <div>
+                            <FontAwesomeIcon className="welcomeFooter-icon" icon="fa-brands fa-instagram" />
+                            <FontAwesomeIcon className="welcomeFooter-icon" icon="fa-brands fa-facebook" />
+                        </div>
                     </div>
                 </div>
                 <div className="row welcomeFooter-span">
