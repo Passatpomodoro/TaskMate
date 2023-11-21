@@ -10,12 +10,14 @@ export default function RegisterScreen() {
         e.preventDefault();
 
         const { data, error } = await supabase.auth.signUp({
-            name: e.target.elements[0].value,
-            surname: e.target.elements[1].value,
             email: e.target.elements[2].value,
             password: e.target.elements[3].value,
-            company: e.target.elements[4].value,
-            userType: selectedOption,
+            user_metadata: {
+                name: e.target.elements[0].value,
+                surname: e.target.elements[1].value,
+                company: e.target.elements[4].value,
+                userType: selectedOption
+            }
         });
 
         if (!error) {

@@ -13,11 +13,17 @@ export  default function LoginScreen() {
 
         const { data, error } = await supabase.auth.signInWithPassword({
             email: e.target.elements[0].value,
-            password: e.target.elements[1].value
+            password: e.target.elements[1].value,
         })
         if (!error) {
             console.log(data);
-            navigation('/mainscreen')
+            const userType = data.user?.user_metadata?.userType;
+
+            if (userType === 'admin') {
+                navigation('/myscreenadmin');
+            } else {
+                navigation('/mainscreen');
+            }
             return
         }
         console.error(error)
