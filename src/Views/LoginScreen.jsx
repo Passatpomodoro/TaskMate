@@ -20,9 +20,9 @@ export  default function LoginScreen() {
             const userType = data.user?.user_metadata?.userType;
 
             if (userType === 'admin') {
-                navigation('/mainscreenadmin');
+                navigation('/MainScreenAdmin');
             } else {
-                navigation('/mainscreen');
+                navigation('/MainScreen');
             }
             return
         }
