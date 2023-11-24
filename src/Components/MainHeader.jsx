@@ -1,9 +1,4 @@
 import supabase from "../Utils/supabase.js";
-import {
-    useNavigate
-} from "react-router-dom";
-import Sidebar from "../Components/SiderBar.jsx";
-import GetNotes from "../Components/GetNotes.jsx";
 
 export default function MainHeader (){
 async function handleSignOut(){
