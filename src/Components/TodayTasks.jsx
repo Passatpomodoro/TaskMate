@@ -1,6 +1,7 @@
 import supabase from "../Utils/supabase.js";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import "../Sass/TodayTasks.scss"
 
 export default function TodayTasks () {
 
@@ -47,8 +48,8 @@ export default function TodayTasks () {
     }
 
     return (
-        <div className="main-add-task">
-            <div className="">
+        <div className="main-today-tasks">
+            <div className="main-today-tasks-table">
                 <ul>
                     {
                         notes && notes.map(note => (
