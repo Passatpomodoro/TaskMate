@@ -18,3 +18,34 @@
   margin-right: 45px;
   border-radius: 10px;
 }
+
+.list-styling {
+  margin: 15px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    margin-left: 15px;
+    border-radius: 10px;
+    border: white 1px solid;
+    width: 100px;
+    height: 35px;
+    color: #041E33;
+    cursor: pointer;
+  }
+  &.high-priority {
+    background-color: #FF6347;
+  }
+
+  &.medium-priority {
+    background-color: #ffff33;
+  }
+
+  &.low-priority {
+    background-color: #99cc00;
+  }
+}

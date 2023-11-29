@@ -49,6 +49,19 @@ export default function MyNotes(){
             console.error(error);
         }
 
+    const getPriorityClass = priority => {
+        switch (priority) {
+            case 'High':
+                return 'high-priority';
+            case 'Medium':
+                return 'medium-priority';
+            case 'Low':
+                return 'low-priority';
+            default:
+                return '';
+        }
+    };
+
         return (
             <>
                 <MainHeader/>
@@ -57,11 +70,19 @@ export default function MyNotes(){
                 <div className="main-today-tasks">
                     <div className="main-today-tasks-table">
                         <ul>
-                            {
-                                notes && notes.map(note => (
-                                    <li key={note.id}>{note.note} {note.date}</li>
-                                ))
-                            }
+                            {notes &&
+                                notes.map((note) => (
+                                    <li className={`list-styling ${getPriorityClass(note.priority)}`} key={note.id}>
+                                        <div>
+                                            {note.note} {note.date}
+                                        </div>
+                                        <div>
+                                            <button>Edytuj</button>
+                                            <button>Przełóż</button>
+                                            <button>Usuń</button>
+                                        </div>
+                                    </li>
+                                ))}
                         </ul>
                     </div>
                 </div>
