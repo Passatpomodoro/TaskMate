@@ -1,26 +1,24 @@
 import supabase from "../Utils/supabase.js";
-import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
-import "../Sass/TodayTasks.scss"
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "../Sass/TodayTasks.scss";
 
-export default function TodayTasks () {
-
+export default function TodayTasks() {
     const navigation = useNavigate();
-
-    const [session,setSession] = useState(null);
+    const [session, setSession] = useState(null);
     const [notes, setNotes] = useState(null);
 
     useEffect(() => {
         getSession();
     }, []);
 
-    useEffect(() =>{
-        if(session){
+    useEffect(() => {
+        if (session) {
             getNotes();
         }
-    }, [session])
+    }, [session]);
 
-    async function getSession(){
+    async function getSession() {
         const { data, error } = await supabase.auth.getSession();
 
         if (error) {
@@ -31,17 +29,30 @@ export default function TodayTasks () {
 
         if (!data.session) {
             navigation('/signin');
-            return
+            return;
         }
     }
 
-    async function getNotes (){
+    async function getNotes() {
         let { data: Notes, error } = await supabase
             .from('Notes')
             .select("*")
             .eq('user_id', session.user.id);
-        if (!error){
-            setNotes(Notes);
+
+        if (!error) {
+            const filteredNotes = Notes.filter(note => {
+                const noteDate = new Date(note.date);
+                const currentDate = new Date();
+
+                const isTodayOrEarlier = noteDate <= currentDate;
+
+                // Sprawdzamy czy data zadania jest o 1 dzień wcześniejsza niż bieżąca dla zadań z priorytetem High
+                const isHighPriorityAndOneDayEarlier = note.priority === 'High' && noteDate <= new Date(currentDate.setDate(currentDate.getDate() - 1));
+
+                return isTodayOrEarlier || isHighPriorityAndOneDayEarlier;
+            });
+
+            setNotes(filteredNotes);
             return;
         }
         console.error(error);
@@ -51,11 +62,12 @@ export default function TodayTasks () {
         <div className="main-today-tasks">
             <div className="main-today-tasks-table">
                 <ul>
-                    {
-                        notes && notes.map(note => (
-                            <li key={note.id}>{note.note} {note.date}</li>
-                        ))
-                    }
+                    {notes &&
+                        notes.map((note) => (
+                            <li key={note.id}>
+                                {note.note} {note.date}
+                            </li>
+                        ))}
                 </ul>
             </div>
         </div>

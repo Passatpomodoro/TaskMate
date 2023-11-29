@@ -57,7 +57,7 @@ export default function CreateNotes() {
         const { data, error } = await supabase
             .from('Notes')
             .insert([
-                { user_id: session.user.id, note: e.target.elements[0].value, date: e.target.elements[1].value },
+                { user_id: session.user.id, note: e.target.elements[0].value, date: e.target.elements[1].value, priority: e.target.elements[2].value },
             ])
             .select();
 
