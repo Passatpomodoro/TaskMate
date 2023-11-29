@@ -5,13 +5,13 @@ import "../Sass/SideBar.scss"
 export default function Sidebar () {
     return (
         <>
-            <div className="col-3 sidebar">
+            <div className="sidebar">
                 <ul>
                     <li>
-                        <Link to="/">Zadania na dziś</Link>
+                        <Link to="/mainscreen">Zadania na dziś</Link>
                     </li>
                     <li>
-                        <Link to="/about">Moje zadania</Link>
+                        <Link to="/mynotes">Moje zadania</Link>
                     </li>
                     <li>
                         <Link to="/contact">Wykonane zadania</Link>
