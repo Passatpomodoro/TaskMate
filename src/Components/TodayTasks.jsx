@@ -46,7 +46,6 @@ export default function TodayTasks() {
 
                 const isTodayOrEarlier = noteDate <= currentDate;
 
-                // Sprawdzamy czy data zadania jest o 1 dzień wcześniejsza niż bieżąca dla zadań z priorytetem High
                 const isHighPriorityAndOneDayEarlier =
                     note.priority === 'High' &&
                     noteDate <= new Date(currentDate.setDate(currentDate.getDate() - 1));
@@ -73,32 +72,45 @@ export default function TodayTasks() {
         }
     };
 
-    async function handleEditNote(noteId, updatedNote) {
-        const { data, error } = await supabase
+    async function handleEditNote(noteId, currentNote, currentDate) {
+        const editedNote = prompt("Edytuj notatkę:", currentNote);
+        const editedDate = prompt("Edytuj datę:", currentDate);
+
+        if (editedNote !== null && editedDate !== null) {
+            const { data, error } = await supabase
+                .from('Notes')
+                .update({ note: editedNote, date: editedDate })
+                .eq('id', noteId)
+                .select();
+
+            if (!error) {
+                setNotes(prevNotes => {
+                    const updatedNotes = prevNotes.map(note => {
+                        if (note.id === noteId) {
+                            return { ...note, note: editedNote, date: editedDate };
+                        }
+                        return note;
+                    });
+                    return updatedNotes;
+                });
+                return;
+            }
+            console.error(error);
+        }
+    }
+
+
+    async function handleDeleteNote(noteId) {
+        const { error } = await supabase
             .from('Notes')
-            .update({ note: updatedNote })
-            .eq('id', noteId)
-            .select();
+            .delete()
+            .eq('id', noteId);
 
         if (!error) {
-            setNotes(prevNotes => {
-                const updatedNotes = prevNotes.map(note => {
-                    if (note.id === noteId) {
-                        return { ...note, note: updatedNote };
-                    }
-                    return note;
-                });
-                return updatedNotes;
-            });
-
-            const editedNote = prompt("Edytuj notatkę:", updatedNote);
-            if (editedNote !== null) {
-                await handleEditNote(noteId, editedNote);
-            }
-
-            return;
+            setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
+        } else {
+            console.error(error);
         }
-        console.error(error);
     }
 
     return (
@@ -113,8 +125,8 @@ export default function TodayTasks() {
                                 </div>
                                 <div>
                                     <button onClick={handleEditNote}>Edytuj</button>
-                                    <button>Przełóż</button>
-                                    <button>Usuń</button>
+                                    <button onClick={handleDeleteNote}>Usuń</button>
+                                    <button>Wykonane</button>
                                 </div>
                             </li>
                         ))}
