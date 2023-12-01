@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import supabase from '../Utils/supabase.js';
 
@@ -6,27 +6,66 @@ export default function RegisterScreen() {
     const navigation = useNavigate();
     const [selectedOption, setSelectedOption] = useState('');
 
-    async function handleSignUp(e) {
-        e.preventDefault();
+    const handleSignUp = async (e) => {
+        e.preventDefault()
+        // 2 wersja
+        // const userElements = {
+        //     name: e.target.elements[0].value,
+        //     surname: e.target.elements[1].value,
+        //     company: e.target.elements[4].value,
+        //     userType: selectedOption,
+        // }
+        //
+        // const userData = {
+        //     email: e.target.elements[2].value,
+        //     password: e.target.elements[3].value,
+        //     data: {
+        //         raw_user_meta_data: JSON.stringify(userElements)
+        //     },
+        // }
+        // wersja 1
+        // const userData = {
+        //     email: e.target.elements[2].value,
+        //     password: e.target.elements[3].value,
+        //     data: {
+        //         name: e.target.elements[0].value,
+        //         surname: e.target.elements[1].value,
+        //         company: e.target.elements[4].value,
+        //         userType: selectedOption,
+        //     },
+        // }
+        //
+        // const { users, error } = await supabase.auth.signUp(userData)
+        // if (!error) {
+        //     console.log(users)
+        //     navigation('/signin');
+        // }
+        //
+        // else {
+        //     console.error(error)
+        // }
+        // wersja 3
+        const email = e.target.elements[2].value;
+        const password = e.target.elements[3].value;
 
-        const { data, error } = await supabase.auth.signUp({
-            email: e.target.elements[2].value,
-            password: e.target.elements[3].value,
-            user_metadata: {
-                name: e.target.elements[0].value,
-                surname: e.target.elements[1].value,
-                company: e.target.elements[4].value,
-                userType: selectedOption
-            }
-        });
+        const userData = { email, password };
 
-        if (!error) {
-            console.log(data);
-            navigation('/signin');
-            return;
+        const { user, error } = await supabase.auth.signUp(userData);
+
+        if (user) {
+            await supabase
+                .from('profiles')
+                .insert([
+                    { id: user.id, name: e.target.elements[0].value, surname: e.target.elements[1].value, company: e.target.elements[4].value, userType: selectedOption,}
+                ]);
         }
 
-        console.error(error);
+        if (!error) {
+            console.log(user)
+            navigation('/signin');
+        } else {
+            console.error(error)
+        }
     }
 
     const handleOptionChange = (e) => {
@@ -47,8 +86,8 @@ export default function RegisterScreen() {
                             <input placeholder="Nazwa Firmy" />
                             <select value={selectedOption} onChange={handleOptionChange}>
                                 <option value="">Wybierz opcję</option>
-                                <option value="option1">User</option>
-                                <option value="option2">Admin</option>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
                             </select>
                             <button>Zarejestruj się</button>
                         </form>

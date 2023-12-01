@@ -1,15 +1,19 @@
 import supabase from "../Utils/supabase.js";
+import { useNavigate } from "react-router-dom";
 
-export default function MainHeader (){
-async function handleSignOut(){
-    const { error } = await supabase.auth.signOut()
+export default function MainHeader() {
+    const navigation = useNavigate();
 
-    if (!error){
-        navigation('/signin');
-        return
+    async function handleSignOut() {
+        const { error } = await supabase.auth.signOut();
+
+        if (!error) {
+            navigation('/signin');
+            return;
+        }
+        console.error(error);
     }
-    console.error(error);
-}
+
     return (
         <>
             <header className="main-header">
@@ -21,5 +25,5 @@ async function handleSignOut(){
                 </div>
             </header>
         </>
-    )
+    );
 }

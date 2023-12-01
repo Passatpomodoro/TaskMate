@@ -77,7 +77,7 @@ export default function TodayTasks() {
         const editedDate = prompt("Edytuj datę:", currentDate);
 
         if (editedNote !== null && editedDate !== null) {
-            const { data, error } = await supabase
+            const {error } = await supabase
                 .from('Notes')
                 .update({ note: editedNote, date: editedDate })
                 .eq('id', noteId)

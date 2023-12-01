@@ -10,6 +10,8 @@ import RegisterScreen from "./Views/RegisterScreen.jsx";
 import MainScreen from "./Views/MainScreen.jsx";
 import CreateNotes from "./Components/CreateNotes.jsx";
 import MyNotes from "./Components/MyNotes.jsx";
+import AdminMainScreen from "./Views/AdminMainScreen.jsx";
+
 
 
 
@@ -23,6 +25,7 @@ function App () {
                 <Route path="/mainscreen" element={<MainScreen/>}/>
                 <Route path="/createnotes" element={<CreateNotes/>}/>
                 <Route path="/mynotes" element={<MyNotes/>}/>
+                <Route path="/adminmainscreen" element={<AdminMainScreen/>}/>
             </Routes>
         </Router>
     )
