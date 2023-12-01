@@ -73,27 +73,33 @@ export default function TodayTasks() {
         }
     };
 
-    // async function handleEditNote(noteId, updatedNote) {
-    //     const { data, error } = await supabase
-    //         .from('Notes')
-    //         .update({ note: updatedNote })
-    //         .eq('id', noteId)
-    //         .select();
-    //
-    //     if (!error) {
-    //         setNotes(prevNotes => {
-    //             const updatedNotes = prevNotes.map(note => {
-    //                 if (note.id === noteId) {
-    //                     return { ...note, note: updatedNote };
-    //                 }
-    //                 return note;
-    //             });
-    //             return updatedNotes;
-    //         });
-    //         return;
-    //     }
-    //     console.error(error);
-    // }
+    async function handleEditNote(noteId, updatedNote) {
+        const { data, error } = await supabase
+            .from('Notes')
+            .update({ note: updatedNote })
+            .eq('id', noteId)
+            .select();
+
+        if (!error) {
+            setNotes(prevNotes => {
+                const updatedNotes = prevNotes.map(note => {
+                    if (note.id === noteId) {
+                        return { ...note, note: updatedNote };
+                    }
+                    return note;
+                });
+                return updatedNotes;
+            });
+
+            const editedNote = prompt("Edytuj notatkę:", updatedNote);
+            if (editedNote !== null) {
+                await handleEditNote(noteId, editedNote);
+            }
+
+            return;
+        }
+        console.error(error);
+    }
 
     return (
         <div className="main-today-tasks">
@@ -106,7 +112,7 @@ export default function TodayTasks() {
                                     {note.note} {note.date}
                                 </div>
                                 <div>
-                                    {/*<button onClick={handleEditNote}>Edytuj</button>*/}
+                                    <button onClick={handleEditNote}>Edytuj</button>
                                     <button>Przełóż</button>
                                     <button>Usuń</button>
                                 </div>
