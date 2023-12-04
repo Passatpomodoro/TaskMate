@@ -1,6 +1,6 @@
 import supabase from "../Utils/supabase.js";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
 import "../Sass/TodayTasks.scss";
 
 export default function TodayTasks() {
@@ -74,24 +74,25 @@ export default function TodayTasks() {
 
     async function handleEditNote(noteId, currentNote, currentDate) {
         const editedNote = prompt("Edytuj notatkę:", currentNote);
-        const editedDate = prompt("Edytuj datę:", currentDate);
+        let editedDate = new Date(prompt("Edytuj datę:", currentDate));
+        editedDate = editedDate.toISOString().split('T')[0];
+        console.log(editedDate);
+        console.log(editedNote); //Usuń potem - do testów
 
         if (editedNote !== null && editedDate !== null) {
-            const {error } = await supabase
+            const { error } = await supabase
                 .from('Notes')
                 .update({ note: editedNote, date: editedDate })
-                .eq('id', noteId)
-                .select();
+                .eq('id', noteId);
 
             if (!error) {
                 setNotes(prevNotes => {
-                    const updatedNotes = prevNotes.map(note => {
+                    return prevNotes.map(note => {
                         if (note.id === noteId) {
                             return { ...note, note: editedNote, date: editedDate };
                         }
                         return note;
                     });
-                    return updatedNotes;
                 });
                 return;
             }
