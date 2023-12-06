@@ -113,6 +113,27 @@ export default function TodayTasks() {
         }
     }
 
+    async function handleNoteDone(noteId) {
+        const noteToMove = notes.find(note => note.id === noteId);
+
+        if (noteToMove) {
+            const {error } = await supabase
+                .from('Done')
+                .insert([
+                    { user_id: session.user.id, ...noteToMove },
+                ])
+                .select();
+
+            if (!error) {
+                const updatedNotes = notes.filter(note => note.id !== noteId);
+                setNotes(updatedNotes);
+            } else {
+                console.error(error);
+            }
+        }
+    }
+
+
     return (
         <div className="main-today-tasks">
             <div className="main-today-tasks-table">
@@ -127,8 +148,12 @@ export default function TodayTasks() {
                                     <button onClick={() => handleEditNote(note.id, note.note, note.date)}>
                                         Edytuj
                                     </button>
-                                    <button onClick={handleDeleteNote}>Usuń</button>
-                                    <button>Wykonane</button>
+                                    <button onClick={() => handleDeleteNote(note.id)}>
+                                        Usuń
+                                    </button>
+                                    <button onClick={() => handleNoteDone(note.id, note.note, note.date)}>
+                                        Wykonane
+                                    </button>
                                 </div>
                             </li>
                         ))}

@@ -14,7 +14,7 @@ export default function Sidebar () {
                         <Link to="/mynotes">Moje zadania</Link>
                     </li>
                     <li>
-                        <Link to="/contact">Wykonane zadania</Link>
+                        <Link to="/mydonenotes">Wykonane zadania</Link>
                     </li>
                 </ul>
                 <p> NAZWA FIRMY </p>

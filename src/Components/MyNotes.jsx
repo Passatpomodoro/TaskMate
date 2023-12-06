@@ -62,7 +62,77 @@ export default function MyNotes(){
         }
     };
 
-        return (
+    async function handleEditNote(noteId, currentNote, currentDate) {
+
+        const editedNote = prompt("Edytuj notatkę:", currentNote);
+        let editedDate = new Date(prompt("Edytuj datę:", currentDate));
+        editedDate = editedDate.toISOString().split('T')[0];
+
+        if (editedNote !== null && editedDate !== null) {
+            const { error } = await supabase
+                .from('Notes')
+                .update({ note: editedNote, date: editedDate })
+                .eq('id', noteId);
+
+            if (!error) {
+                setNotes(prevNotes => {
+                    return prevNotes.map(note => {
+                        if (note.id === noteId) {
+                            return { ...note, note: editedNote, date: editedDate };
+                        }
+                        return note;
+                    });
+                });
+                return;
+            }
+            console.error(error);
+        }
+    }
+
+
+    async function handleDeleteNote(noteId) {
+        const { error } = await supabase
+            .from('Notes')
+            .delete()
+            .eq('id', noteId);
+
+        if (!error) {
+            setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
+        } else {
+            console.error(error);
+        }
+    }
+
+    async function handleNoteDone(noteId) {
+        const noteToMove = notes.find(note => note.id === noteId);
+
+        if (noteToMove) {
+            const { error: error } = await supabase
+                .from('Done')
+                .insert([
+                    { user_id: session.user.id, ...noteToMove },
+                ])
+                .select();
+
+            if (!error) {
+                const { error } = await supabase
+                    .from('Notes')
+                    .delete()
+                    .eq('id', noteId);
+
+                if (!error) {
+                    setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
+                } else {
+                    console.error(error);
+                }
+            } else {
+                console.error(error);
+            }
+        }
+    }
+
+
+    return (
             <>
                 <MainHeader/>
                 <Sidebar/>
@@ -77,9 +147,15 @@ export default function MyNotes(){
                                             {note.note} {note.date}
                                         </div>
                                         <div>
-                                            <button>Edytuj</button>
-                                            <button>Przełóż</button>
-                                            <button>Usuń</button>
+                                            <button onClick={() => handleEditNote(note.id, note.note, note.date)}>
+                                                Edytuj
+                                            </button>
+                                            <button onClick={() => handleDeleteNote(note.id)}>
+                                                Usuń
+                                            </button>
+                                            <button onClick={() => handleNoteDone(note.id, note.note, note.date)}>
+                                                Wykonane
+                                            </button>
                                         </div>
                                     </li>
                                 ))}
