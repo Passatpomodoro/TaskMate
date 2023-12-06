@@ -73,11 +73,10 @@ export default function TodayTasks() {
     };
 
     async function handleEditNote(noteId, currentNote, currentDate) {
+
         const editedNote = prompt("Edytuj notatkę:", currentNote);
         let editedDate = new Date(prompt("Edytuj datę:", currentDate));
         editedDate = editedDate.toISOString().split('T')[0];
-        console.log(editedDate);
-        console.log(editedNote); //Usuń potem - do testów
 
         if (editedNote !== null && editedDate !== null) {
             const { error } = await supabase
@@ -125,7 +124,9 @@ export default function TodayTasks() {
                                     {note.note} {note.date}
                                 </div>
                                 <div>
-                                    <button onClick={handleEditNote}>Edytuj</button>
+                                    <button onClick={() => handleEditNote(note.id, note.note, note.date)}>
+                                        Edytuj
+                                    </button>
                                     <button onClick={handleDeleteNote}>Usuń</button>
                                     <button>Wykonane</button>
                                 </div>

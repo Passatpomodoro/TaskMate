@@ -58,6 +58,7 @@ export default function RegisterScreen() {
                 .insert([
                     { id: user.id, name: e.target.elements[0].value, surname: e.target.elements[1].value, company: e.target.elements[4].value, userType: selectedOption,}
                 ]);
+
         }
 
         if (!error) {
