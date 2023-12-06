@@ -1,8 +1,8 @@
-import supabase from "../Utils/supabase.js";
+import supabase from "../../Utils/supabase.js";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import "../Sass/TodayTasks.scss"
-import MainHeader from "./MainHeader.jsx";
+import "../../Sass/TodayTasks.scss"
+import MainHeader from "../MainHeader.jsx";
 import Sidebar from "./SiderBar.jsx";
 import AddNewTaskPanel from "./AddNewTaskPanel.jsx";
 export default function MyDoneNotes(){

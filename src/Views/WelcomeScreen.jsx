@@ -1,8 +1,8 @@
-import WelcomeHeader from "../Components/WelcomeHeader.jsx";
-import WelcomeCarusel from "../Components/WelcomeCarusel.jsx";
-import CallToAction from "../Components/CallToAction.jsx";
-import WelcomeColumns from "../Components/WelcomeColumns.jsx";
-import WelcomeFooter from "../Components/WelcomeFooter.jsx";
+import WelcomeHeader from "../Components/WelcomePage/WelcomeHeader.jsx";
+import WelcomeCarusel from "../Components/WelcomePage/WelcomeCarusel.jsx";
+import CallToAction from "../Components/WelcomePage/CallToAction.jsx";
+import WelcomeColumns from "../Components/WelcomePage/WelcomeColumns.jsx";
+import WelcomeFooter from "../Components/WelcomePage/WelcomeFooter.jsx";
 
 function WelcomeScreen() {
     return (

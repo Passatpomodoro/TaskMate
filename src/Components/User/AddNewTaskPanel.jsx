@@ -12,7 +12,7 @@
 // }
 
 import { Link } from 'react-router-dom';
-import '../Sass/AddNewTaskPanel.scss';
+import '../../Sass/AddNewTaskPanel.scss';
 
 export default function AddNewTaskPanel({ onButtonClick }) {
     return (

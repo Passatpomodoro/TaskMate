@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import supabase from "../Utils/supabase.js";
+import supabase from "../../Utils/supabase.js";
 
 export default function GetNotes (){
 const navigation = useNavigate();

@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import "../Sass/SideBar.scss"
+import "../../Sass/SideBar.scss"
 
 export default function Sidebar () {
     return (

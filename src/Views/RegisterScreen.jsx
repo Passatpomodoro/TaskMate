@@ -8,49 +8,20 @@ export default function RegisterScreen() {
 
     const handleSignUp = async (e) => {
         e.preventDefault()
-        // 2 wersja
-        // const userElements = {
-        //     name: e.target.elements[0].value,
-        //     surname: e.target.elements[1].value,
-        //     company: e.target.elements[4].value,
-        //     userType: selectedOption,
-        // }
-        //
-        // const userData = {
-        //     email: e.target.elements[2].value,
-        //     password: e.target.elements[3].value,
-        //     data: {
-        //         raw_user_meta_data: JSON.stringify(userElements)
-        //     },
-        // }
-        // wersja 1
-        // const userData = {
-        //     email: e.target.elements[2].value,
-        //     password: e.target.elements[3].value,
-        //     data: {
-        //         name: e.target.elements[0].value,
-        //         surname: e.target.elements[1].value,
-        //         company: e.target.elements[4].value,
-        //         userType: selectedOption,
-        //     },
-        // }
-        //
-        // const { users, error } = await supabase.auth.signUp(userData)
-        // if (!error) {
-        //     console.log(users)
-        //     navigation('/signin');
-        // }
-        //
-        // else {
-        //     console.error(error)
-        // }
-        // wersja 3
+
         const email = e.target.elements[2].value;
         const password = e.target.elements[3].value;
 
-        const userData = { email, password };
+        const name = e.target.elements[0].value
+        const surname = e.target.elements[1].value
+        const company = e.target.elements[4].value
+        const userType = selectedOption
 
-        const { user, error } = await supabase.auth.signUp(userData);
+        const userData = {email, password };
+        const userProfile = {name, surname, company, userType}
+        console.log("Przed rejestracją:", userData);
+        const { user, error } = await supabase.auth.signUp(userData, userProfile);
+        console.log("Po rejestracji:", user, error);
 
         if (user) {
             await supabase
@@ -58,12 +29,12 @@ export default function RegisterScreen() {
                 .insert([
                     { id: user.id, name: e.target.elements[0].value, surname: e.target.elements[1].value, company: e.target.elements[4].value, userType: selectedOption,}
                 ]);
-
         }
 
         if (!error) {
             console.log(user)
             navigation('/signin');
+            console.log(userProfile)
         } else {
             console.error(error)
         }
