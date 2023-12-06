@@ -8,7 +8,6 @@ function WelcomeHeader() {
                 <nav className="col-11">
                     <ul className="welcomeMenu">
                         <li className="Welcome-menu-item"><Link to="/signin">Zacznij planowanie!</Link></li>
-                        <li className="Welcome-menu-item"><Link to="/kontakt">Kontakt</Link></li>
                     </ul>
                 </nav>
             </div>

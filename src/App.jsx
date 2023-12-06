@@ -14,6 +14,8 @@ import AdminMainScreen from "./Views/AdminMainScreen.jsx";
 import MyDoneNotes from "./Components/User/MyDoneNotes.jsx";
 import CreateNotes from "./Components/User/CreateNotes.jsx";
 import CreateNotesAdmin from "./Components/Admin/CreateNotesAdmin.jsx";
+import MyNotesAdmin from "./Components/Admin/MyNotesAdmin.jsx";
+import MyDoneNotesAdmin from "./Components/Admin/MyDoneNotesAdmin.jsx";
 
 
 
@@ -25,13 +27,17 @@ function App () {
                  <Route path="/" element={<WelcomeScreen/>}/>
                 <Route path="/signin" element={<LoginScreen/>}/>
                 <Route path="/signup" element={<RegisterScreen/>}/>
+
                 <Route path="/mainscreen" element={<MainScreen/>}/>
                 <Route path="/createnotes" element={<CreateNotes/>}/>
                 <Route path="/mynotes" element={<MyNotes/>}/>
                 <Route path="/mydonenotes" element={<MyDoneNotes/>}/>
-                <Route path="/adminmainscreen" element={<AdminMainScreen/>}/>
+
+                <Route path="/mainscreenadmin" element={<AdminMainScreen/>}/>
                 <Route path="/createnotesfor" element={<CreateNotesFor/>}/>
                 <Route path="/createnotesadmin" element={<CreateNotesAdmin/>}/>
+                <Route path="/mynotesadmin" element={<MyNotesAdmin/>}/>
+                <Route path="/mydonenotesadmin" element={<MyDoneNotesAdmin/>}/>
             </Routes>
         </Router>
     )

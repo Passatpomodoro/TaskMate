@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX} from '@fortawesome/free-solid-svg-icons';
 
 library.add(faX);
-export default function CreateNotes() {
+export default function CreateNotesAdmin() {
     const navigation = useNavigate();
 
     const [session, setSession] = useState(null);

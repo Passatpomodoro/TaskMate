@@ -17,6 +17,7 @@
     height: 35px;
     color: #041E33;
     cursor: pointer;
+    text-align: center;
   }
   a {
     text-decoration: none;
@@ -24,8 +25,11 @@
 }
 
 .link-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
+  button {
+    display: inline-block;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+  }
 }

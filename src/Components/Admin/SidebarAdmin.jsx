@@ -2,22 +2,22 @@
 import { Link } from 'react-router-dom';
 import "../../Sass/SideBar.scss"
 
-export default function Sidebar () {
+export default function SidebarAdmin () {
     return (
         <>
             <div className="sidebar">
                 <ul>
                     <li>
-                        <Link to="/mainscreen">Zadania na dziś</Link>
+                        <Link to="/mainscreenadmin">Zadania na dziś</Link>
                     </li>
                     <li>
-                        <Link to="/mynotes">Moje zadania</Link>
+                        <Link to="/mynotesadmin">Moje zadania</Link>
                     </li>
                     <li>
-                        <Link to="/mydonenotes">Wykonane zadania</Link>
+                        <Link to="/mydonenotesadmin">Wykonane zadania</Link>
                     </li>
                     <li>
-                        <Link to="/">Pracownicy</Link>
+                        <Link to="userslist">Pracownicy</Link>
                     </li>
                 </ul>
                 <p> NAZWA FIRMY </p>

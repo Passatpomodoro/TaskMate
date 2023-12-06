@@ -14,7 +14,7 @@
 import { Link } from 'react-router-dom';
 import '../../Sass/AddNewTaskPanel.scss';
 
-export default function AddNewTaskPanel({ onButtonClick }) {
+export default function AddNewTaskPanelAdmin({ onButtonClick }) {
     return (
         <div className="main-add-task">
             <div className="link-container">
