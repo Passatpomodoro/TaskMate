@@ -27,7 +27,7 @@ export default function RegisterScreen() {
             await supabase
                 .from('profiles')
                 .insert([
-                    { id: data.id, name: e.target.elements[0].value, surname: e.target.elements[1].value, company: e.target.elements[4].value, userType: selectedOption,}
+                    {name: e.target.elements[0].value, surname: e.target.elements[1].value, company: e.target.elements[4].value, userType: selectedOption,}
                 ]);
         }
 
