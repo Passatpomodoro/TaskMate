@@ -19,9 +19,8 @@ export default function RegisterScreen() {
 
         const userData = {email, password };
         const userProfile = {name, surname, company, userType}
-        console.log("Przed rejestracją:", userData);
+
         const { data, error } = await supabase.auth.signUp(userData, userProfile);
-        console.log("Po rejestracji:", data, error);
 
         if (data) {
             await supabase
@@ -32,9 +31,8 @@ export default function RegisterScreen() {
         }
 
         if (!error) {
-            console.log(data)
             navigation('/signin');
-            console.log(userProfile)
+
         } else {
             console.error(error)
         }

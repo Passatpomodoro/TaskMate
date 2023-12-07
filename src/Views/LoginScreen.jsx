@@ -8,26 +8,43 @@ export  default function LoginScreen() {
 
     const navigation = useNavigate()
 
-    async function handleSignIn (e) {
+    async function handleSignIn(e) {
         e.preventDefault();
 
         const { data, error } = await supabase.auth.signInWithPassword({
             email: e.target.elements[0].value,
             password: e.target.elements[1].value,
-        })
-        if (!error) {
-            console.log(data);
-            const userType = data.user?.user_metadata?.userType;
+        });
 
-            if (userType === 'admin') {
-                navigation('/mainscreenadmin');
+        if (!error) {
+            const userId = data.user.id; // Pobierz identyfikator użytkownika
+            console.log("User ID:", userId);
+            // Pomyślnie zalogowano, pobierz userType z bazy
+            const { data: userData, error: profileError } = await supabase
+                .from("profiles")
+                .select("userType")
+                .eq("id", userId)
+                .single();
+            console.log(userData);
+
+            if (!profileError) {
+                const userType = userData.userType;
+
+                if (userType === "admin") {
+                    navigation("/mainscreenadmin");
+                } else {
+                    navigation("/mainscreen");
+                }
+
             } else {
-                navigation('/mainscreen');
+                console.error(profileError);
             }
-            return
+            return;
         }
-        console.error(error)
+
+        console.error(error);
     }
+
 
     return (
         <>
