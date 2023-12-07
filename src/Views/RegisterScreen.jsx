@@ -20,19 +20,19 @@ export default function RegisterScreen() {
         const userData = {email, password };
         const userProfile = {name, surname, company, userType}
         console.log("Przed rejestracją:", userData);
-        const { user, error } = await supabase.auth.signUp(userData, userProfile);
-        console.log("Po rejestracji:", user, error);
+        const { data, error } = await supabase.auth.signUp(userData, userProfile);
+        console.log("Po rejestracji:", data, error);
 
-        if (user) {
+        if (data) {
             await supabase
                 .from('profiles')
                 .insert([
-                    { id: user.id, name: e.target.elements[0].value, surname: e.target.elements[1].value, company: e.target.elements[4].value, userType: selectedOption,}
+                    { id: data.id, name: e.target.elements[0].value, surname: e.target.elements[1].value, company: e.target.elements[4].value, userType: selectedOption,}
                 ]);
         }
 
         if (!error) {
-            console.log(user)
+            console.log(data)
             navigation('/signin');
             console.log(userProfile)
         } else {
@@ -51,12 +51,12 @@ export default function RegisterScreen() {
                     <div className="signIn-align">
                         <h1>Rejestracja</h1>
                         <form onSubmit={handleSignUp}>
-                            <input placeholder="Imię" />
-                            <input placeholder="Nazwisko" />
-                            <input placeholder="Email" />
-                            <input placeholder="Hasło" type="password" />
-                            <input placeholder="Nazwa Firmy" />
-                            <select value={selectedOption} onChange={handleOptionChange}>
+                            <input name="name" placeholder="Imię" />
+                            <input name="surname" placeholder="Nazwisko" />
+                            <input name="email" placeholder="Email" />
+                            <input name="password" placeholder="Hasło" type="password" />
+                            <input name="company" placeholder="Nazwa Firmy" />
+                            <select name="userType" value={selectedOption} onChange={handleOptionChange}>
                                 <option value="">Wybierz opcję</option>
                                 <option value="user">User</option>
                                 <option value="admin">Admin</option>
