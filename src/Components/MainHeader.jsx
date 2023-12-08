@@ -1,5 +1,6 @@
 import supabase from "../Utils/supabase.js";
 import { useNavigate } from "react-router-dom";
+import FullName from "./FullName.jsx";
 
 export default function MainHeader() {
     const navigation = useNavigate();
@@ -19,8 +20,7 @@ export default function MainHeader() {
             <header className="main-header">
                 <h1 className="logo">Task<span className="logo-second-color">Mate</span></h1>
                 <div className="main-logout">
-                    <p>Imię</p>
-                    <p>Nazwisko</p>
+                    <FullName/>
                     <button onClick={handleSignOut}>Wyloguj</button>
                 </div>
             </header>
