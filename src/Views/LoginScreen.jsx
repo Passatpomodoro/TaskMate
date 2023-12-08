@@ -21,10 +21,10 @@ export  default function LoginScreen() {
             console.log("User ID:", userId);
             // Pomyślnie zalogowano, pobierz userType z bazy
             const { data: userData, error: profileError } = await supabase
-                .from("profiles")
+                .from("bananas")
                 .select("userType")
                 .eq("id", userId)
-                .single();
+                // .single();
             console.log(userData);
 
             if (!profileError) {
