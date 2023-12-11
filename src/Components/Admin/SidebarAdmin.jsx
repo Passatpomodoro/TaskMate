@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import "../../Sass/SideBar.scss"
+import CompanyName from "../CompanyName.jsx";
 
 export default function SidebarAdmin () {
     return (
@@ -20,7 +21,9 @@ export default function SidebarAdmin () {
                         <Link to="userslist">Pracownicy</Link>
                     </li>
                 </ul>
-                <p> NAZWA FIRMY </p>
+                <div className="sidebar-company">
+                    <CompanyName/>
+                </div>
             </div>
         </>
     );

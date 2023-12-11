@@ -12,7 +12,6 @@ function CompanyName() {
                 const userCompany = session?.user?.user_metadata?.company;
 
                 setCompany(userCompany);
-                console.log(userCompany);
 
             } catch (error) {
                 console.error('Błąd podczas pobierania danych:', error.message);
