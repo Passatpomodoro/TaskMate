@@ -1,35 +1,33 @@
 import { useEffect, useState } from 'react';
 import supabase from '../Utils/supabase';
 
-function CompanyName () {
-    const [userData, setUserData] = useState(null);
+function CompanyName() {
+    const [company, setCompany] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const session = supabase.auth.session;
-            const user = session ? session.user : null;
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
 
-            const { data, error } = await supabase
-                .from('bananas')
-                .select('id, company')
-                .eq('id', user ? user.id : null);
-            console.log(data)
-            if (!error && data) {
-                // Zakładając, że chcesz pierwszy element z tablicy
-                setUserData(data[0]);
-            } else {
-                console.error(error);
+                const userCompany = session?.user?.user_metadata?.company;
+
+                setCompany(userCompany);
+                console.log(userCompany);
+
+            } catch (error) {
+                console.error('Błąd podczas pobierania danych:', error.message);
             }
         };
 
         fetchData();
     }, []);
 
+
     return (
         <>
-            {userData && (
+            {company &&  (
                 <>
-                    <p>{userData.company}</p>
+                    <p>{company}</p>
                 </>
             )}
         </>

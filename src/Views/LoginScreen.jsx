@@ -15,20 +15,19 @@ export  default function LoginScreen() {
             email: e.target.elements[0].value,
             password: e.target.elements[1].value,
         });
-
+        console.log(data.user.user_metadata.userType);
         if (!error) {
             const userId = data.user.id; // Pobierz identyfikator użytkownika
             console.log("User ID:", userId);
             // Pomyślnie zalogowano, pobierz userType z bazy
             const { data: userData, error: profileError } = await supabase
-                .from("bananas")
-                .select("userType")
-                .eq("id", userId)
+                .from("user_metadata")
+                .select("metadata")
+                .eq("user_id", userId)
                 // .single();
-            console.log(userData);
 
             if (!profileError) {
-                const userType = userData.userType;
+                const userType = data.user.user_metadata.userType;
 
                 if (userType === "admin") {
                     navigation("/mainscreenadmin");

@@ -17,21 +17,24 @@ export default function RegisterScreen() {
         const company = e.target.elements[4].value
         const userType = selectedOption
 
-        const userData = {email, password };
-        const userProfile = {name, surname, company, userType}
-
-        const { data, error } = await supabase.auth.signUp(userData, userProfile);
-
-        if (data) {
-            await supabase
-                .from('profiles')
-                .insert([
-                    {name: e.target.elements[0].value, surname: e.target.elements[1].value, company: e.target.elements[4].value, userType: selectedOption,}
-                ]);
-        }
+        const { data, error } = await supabase.auth.signUp(
+            {
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        name: name,
+                        surname: surname,
+                        company: company,
+                        userType: userType
+                    }
+                }
+            }
+        )
 
         if (!error) {
             navigation('/signin');
+            console.log(data);
 
         } else {
             console.error(error)

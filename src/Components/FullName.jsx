@@ -2,31 +2,35 @@ import { useEffect, useState } from 'react';
 import supabase from '../Utils/supabase';
 
 function FullName() {
-    const [userData, setUserData] = useState(null);
+    const [name, setName] = useState(null);
+    const [surname, setSurname] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const { data, error } = await supabase
-                .from('bananas')
-                .select('name, surname');
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
 
-            if (!error && data) {
-                // Zakładając, że chcesz pierwszy element z tablicy
-                setUserData(data[0]);
-            } else {
-                console.error(error);
+                const userName = session?.user?.user_metadata?.name;
+                const userSurname = session?.user?.user_metadata?.surname;
+
+                setName(userName);
+                setSurname(userSurname);
+
+            } catch (error) {
+                console.error('Błąd podczas pobierania danych:', error.message);
             }
         };
 
         fetchData();
     }, []);
 
+
     return (
         <>
-            {userData && (
+            {name && surname && (
                 <>
-                    <p>{userData.name}</p>
-                    <p>{userData.surname}</p>
+                    <p>{name}</p>
+                    <p>{surname}</p>
                 </>
             )}
         </>
