@@ -12,7 +12,7 @@ function WelcomeCarusel() {
     };
 
     return (
-        <section className="container welcome-carousel">
+        <section className="welcome-carousel">
             <Slider {...settings}>
                 <div className="carousel-item">
                     <h1>Opanuj chaos codzienności i zorganizuj swój dzień!</h1>

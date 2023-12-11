@@ -42,10 +42,14 @@
 }
 
 .welcome-carousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 1000px;
-  height: 600px;
+  height: 400px;
   margin: 0 auto;
   max-height: 500px;
+  flex: 1;
 }
 
 .carousel-item {
