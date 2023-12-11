@@ -7,12 +7,13 @@
   top: 0;
   left: 0;
   background-color: $logo-color;
-  margin-top: 80px;
+  padding-top: 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
   overflow: hidden;
+  z-index: -10;
   p {
     margin-bottom: 100px;
   }
