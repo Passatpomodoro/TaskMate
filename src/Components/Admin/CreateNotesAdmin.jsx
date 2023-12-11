@@ -63,13 +63,13 @@ export default function CreateNotesAdmin() {
 
         if (!error) {
             setNotes(prev => [...prev, data[0]]);
-            navigation('/adminmainscreen');
+            navigation('/mainscreenadmin');
             return;
         }
         console.error(error);
     }
     const handleNavigateBack = () => {
-        navigation('/adminmainscreen');
+        navigation('/mainscreenadmin');
     };
 
     return (
