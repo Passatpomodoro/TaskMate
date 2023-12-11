@@ -9,7 +9,20 @@
   margin-top: 50px;
   border-radius: 10px;
 
+  a {
+    text-decoration: none;
+  }
+}
+
+.link-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   button {
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    display: flex;
     margin-right: 10px;
     border-radius: 10px;
     border: white 1px solid;
@@ -18,18 +31,5 @@
     color: #041E33;
     cursor: pointer;
     text-align: center;
-  }
-  a {
-    text-decoration: none;
-  }
-}
-
-.link-container {
-  button {
-    display: inline-block;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin: 15px;
   }
 }
