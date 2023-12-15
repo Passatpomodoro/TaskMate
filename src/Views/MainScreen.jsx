@@ -9,8 +9,8 @@ import TodayTasks from "../Components/TodayTasks.jsx";
 function MainScreen() {
     return (
         <>
-            <MainHeader />
             <Sidebar />
+            <MainHeader />
             <AddNewTaskPanel />
             <TodayTasks />
         </>
